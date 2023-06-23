@@ -30,8 +30,8 @@ const AsideMenu = () => {
         const IconComponent = item.icon;
         return (
           <li key={item.title}>
-            <span>{item.title}</span>
             <IconComponent />
+            <span>{item.title}</span>
           </li>
         );
       })}
