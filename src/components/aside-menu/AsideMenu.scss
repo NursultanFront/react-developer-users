@@ -1,0 +1,66 @@
+.aside {
+  background-color: #f9fafb;
+
+  &__logo {
+    margin: 0 0 26px;
+  }
+
+  &__user {
+    margin: 0 0 36px;
+  }
+
+  &__wrapper {
+    padding: 25px 20px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__nav {
+    display: flex;
+    flex-direction: column;
+    row-gap: 34px;
+  }
+
+  &__item {
+    display: flex;
+    column-gap: 17px;
+
+    span {
+      color: #9494a0;
+      font-weight: 450;
+    }
+
+    svg {
+      width: 27px;
+    }
+  }
+}
+
+.user {
+  display: flex;
+  column-gap: 13px;
+
+  &__img {
+    width: 60px;
+    height: 60px;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+  }
+
+  &__name {
+    color: #424f5e;
+    font-weight: 500;
+    line-height: 20px;
+  }
+
+  &__role {
+    color: #9494a0;
+    font-size: 14px;
+    line-height: 20px;
+  }
+}
