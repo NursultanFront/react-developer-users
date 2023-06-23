@@ -9,7 +9,7 @@ class Api {
 
   private static createEndpoint() {
     return axios.create({
-      baseURL: process.env.REACT_APP_DB_URL,
+      baseURL: "",
       headers: {
         "Content-Type": "application/json",
       },
