@@ -1,0 +1,58 @@
+.home {
+  border-radius: 15px;
+  background: #f9fafb;
+
+  &__wrapper {
+    padding: 15px 0px;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    padding: 18px 25px;
+    gap: 0 50px;
+  }
+
+  &__title {
+    color: #424f5e;
+    font-size: 26px;
+    font-weight: 500;
+  }
+
+  &__input {
+    flex-grow: 1;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 10px;
+  }
+
+  &__label {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    input {
+      width: 100%;
+      padding: 8px 13px;
+      border-radius: 10px;
+      border: 1px solid #c1c1cb;
+    }
+  }
+
+  &__loupe {
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    right: 10px;
+  }
+
+  &__add-btn {
+    padding: 8px 16px;
+    color: #f9fafb;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 450;
+    border-radius: 10px;
+    background: #32c076;
+  }
+}
