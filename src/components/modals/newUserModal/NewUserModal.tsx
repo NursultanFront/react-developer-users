@@ -2,6 +2,8 @@ import { Popup } from "../../../lib/Popup/Popup";
 import { SelectComp } from "../../../lib/Select";
 import { Options } from "../../../data/data";
 import { CloseIcons } from "../../../assets/modals/CloseIcons";
+import { useCallback, useState } from "react";
+import isEmail from "validator/es/lib/isEmail";
 
 type Props = {
   modalOpen: boolean;
@@ -10,15 +12,30 @@ type Props = {
 };
 
 const NewUserModal = ({ modalOpen, closeModal, getValue }: Props) => {
-  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    console.log("Form submitted");
-    getValue(true);
-  };
+  const [inputValue, setInputValue] = useState("");
+  const [isEmailValid, setIsEmailValid] = useState(false);
 
   const getSelectValue = (value: Options["label"][] | Options["label"]) => {
     console.log(value);
   };
+
+  const onSubmit = useCallback(
+    (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+      console.log(inputValue);
+      getValue(true);
+    },
+    [getValue, inputValue]
+  );
+
+  const getTextInputValue = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      const newEmail = event.target.value;
+      setInputValue(newEmail);
+      setIsEmailValid(isEmail(newEmail));
+    },
+    []
+  );
 
   return (
     <Popup isOpen={modalOpen}>
@@ -29,9 +46,16 @@ const NewUserModal = ({ modalOpen, closeModal, getValue }: Props) => {
           </button>
           <h2 className="modal__title">Отправить приглашение</h2>
           <div className="modal__info">
-            <input type="email" placeholder="email" />
+            <input
+              type="email"
+              placeholder="Email"
+              value={inputValue}
+              onChange={getTextInputValue}
+            />
             <SelectComp multi={true} getValue={getSelectValue}></SelectComp>
-            <button type="submit">Отправить приглашение</button>
+            <button type="submit" disabled={!isEmailValid}>
+              Отправить приглашение
+            </button>
           </div>
         </div>
       </form>
