@@ -1,7 +1,11 @@
 .modal {
   position: relative;
-  display: flex;
-  flex-direction: column;
+
+  &__wrapper {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+  }
 
   &__title {
     margin: 0 0 17px;
@@ -22,8 +26,8 @@
 
   &__close {
     position: absolute;
-    top: -40px;
-    right: -40px;
+    top: 20px;
+    right: 20px;
   }
 
   &__info {

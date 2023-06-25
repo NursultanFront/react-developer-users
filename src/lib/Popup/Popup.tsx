@@ -13,7 +13,7 @@ const customStyles = {
     backdropFilter: "blur(6px)",
   },
   content: {
-    padding: "40px",
+    padding: "0px",
     borderRadius: "25px",
     background: "#F9FAFB",
     boxShadow: " -30px 30px 50px 0px rgba(28, 28, 30, 0.10)",

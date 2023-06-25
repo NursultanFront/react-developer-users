@@ -12,9 +12,11 @@ const DeleteModal = (props: Props) => {
   return (
     <Popup isOpen={modalOpen}>
       <div className="modal">
-        <p className="modal__text">Пользователь успешно удален</p>
-        <div className="modal__info">
-          <button onClick={closeModal}>Закрыть</button>
+        <div className="modal__wrapper">
+          <p className="modal__text">Пользователь успешно удален</p>
+          <div className="modal__info">
+            <button onClick={closeModal}>Закрыть</button>
+          </div>
         </div>
       </div>
     </Popup>
