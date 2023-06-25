@@ -11,6 +11,15 @@
     font-weight: 600;
   }
 
+  &__text {
+    margin: 0 0 17px;
+    color: #424f5e;
+    text-align: center;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 120%;
+  }
+
   &__close {
     position: absolute;
     top: -40px;

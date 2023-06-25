@@ -20,7 +20,7 @@ const NewUserModal = () => {
   };
 
   return (
-    <Popup isOpen={modalOpen} onClose={closeModal}>
+    <Popup isOpen={modalOpen}>
       <form className="modal" onSubmit={onSubmit}>
         <button type="button" className="modal__close" onClick={closeModal}>
           <CloseIcons />

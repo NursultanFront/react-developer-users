@@ -4,7 +4,7 @@ import "./Popup.scss";
 
 type Props = {
   isOpen: boolean;
-  onClose: () => void;
+  onClose?: () => void;
 };
 
 const customStyles = {
@@ -13,7 +13,7 @@ const customStyles = {
     backdropFilter: "blur(6px)",
   },
   content: {
-    padding: "60px",
+    padding: "40px",
     borderRadius: "25px",
     background: "#F9FAFB",
     boxShadow: " -30px 30px 50px 0px rgba(28, 28, 30, 0.10)",

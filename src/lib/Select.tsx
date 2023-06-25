@@ -10,7 +10,7 @@ type Props = {
 const accessList = options.filter((item) => !item.default);
 
 const SelectComp = ({ multi, getValue }: Props) => {
-  const [currentCountry, setCurrentCounrty] = useState<
+  const [access, setAccess] = useState<
     Options["label"] | MultiValue<Options> | null
   >(null);
 
@@ -25,11 +25,11 @@ const SelectComp = ({ multi, getValue }: Props) => {
         );
 
         //@ts-ignore
-        setCurrentCounrty(selectedValues);
+        setAccess(selectedValues);
         getValue(selectedValues);
       } else {
         const selectedValue = (option as Options).label;
-        setCurrentCounrty(selectedValue);
+        setAccess(selectedValue);
       }
     }
   };
