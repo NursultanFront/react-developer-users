@@ -7,6 +7,7 @@ import { router } from "./router";
 import { RouterProvider } from "react-router-dom";
 
 import "./index.scss";
+import "./assets/styles/react-select.scss";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement

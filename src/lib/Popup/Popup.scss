@@ -1,0 +1,43 @@
+.modal {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  &__title {
+    margin: 0 0 17px;
+    color: #424f5e;
+    text-align: center;
+    font-size: 34px;
+    font-weight: 600;
+  }
+
+  &__close {
+    position: absolute;
+    top: -40px;
+    right: -40px;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    input {
+      padding: 20px;
+      color: #9494a0;
+      font-size: 20px;
+      border-radius: 15px;
+      border: 1px solid #c1c1cb;
+    }
+
+    button {
+      padding: 20px;
+      color: #f9fafb;
+      text-align: center;
+      font-size: 20px;
+      font-weight: 450;
+      border-radius: 15px;
+      background-color: #32c076;
+    }
+  }
+}

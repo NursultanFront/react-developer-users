@@ -2,6 +2,7 @@ import { UserInfo } from "../../components/user-content/UserInfo";
 import { LoupeIcon } from "../../assets/home/LoupeIcon";
 
 import "./HomeView.scss";
+import { NewUserModal } from "../../components/modals/newUserModal/NewUserModal";
 
 const HomeView = () => {
   return (
@@ -24,6 +25,8 @@ const HomeView = () => {
           <UserInfo></UserInfo>
         </div>
       </div>
+
+      <NewUserModal></NewUserModal>
     </div>
   );
 };

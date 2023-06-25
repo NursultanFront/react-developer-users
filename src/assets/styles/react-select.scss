@@ -1,0 +1,11 @@
+.react-select {
+  &__control {
+    border-radius: 15px !important;
+    border: 1px solid #c1c1cb !important;
+    box-shadow: none;
+  }
+
+  &__value-container {
+    padding: 20px !important;
+  }
+}
