@@ -2,9 +2,14 @@ import { PropsWithChildren } from "react";
 import Modal from "react-modal";
 import "./Popup.scss";
 
+type AnyObj = {
+  [key: string]: any;
+};
+
 type Props = {
   isOpen: boolean;
   onClose?: () => void;
+  styles?: AnyObj;
 };
 
 const customStyles = {
@@ -24,6 +29,7 @@ const customStyles = {
     transform: "translate(-50%, -50%)",
     maxWidth: "526px",
     width: "100%",
+    zIndex: 99,
   },
 };
 
@@ -31,9 +37,15 @@ export const Popup: React.FC<PropsWithChildren<Props>> = ({
   isOpen,
   onClose,
   children,
+  styles = customStyles,
 }) => {
   return (
-    <Modal isOpen={isOpen} style={customStyles} ariaHideApp={false}>
+    <Modal
+      isOpen={isOpen}
+      style={styles}
+      ariaHideApp={false}
+      onRequestClose={onClose}
+    >
       <>{children}</>
     </Modal>
   );

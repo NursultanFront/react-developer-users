@@ -61,3 +61,33 @@
     right: 29px;
   }
 }
+
+.advance {
+  padding: 22px 0px !important;
+  border-radius: 15px !important;
+  background: #f9fafb !important;
+  box-shadow: -30px 30px 50px 0px rgba(28, 28, 30, 0.1) !important;
+
+  .advance__item {
+    color: #424f5e !important;
+    font-size: 18px !important;
+    line-height: 20px !important;
+    &:hover {
+      color: #9494a0 !important;
+      font-size: 18px !important;
+      line-height: 20px !important;
+      background: none !important;
+    }
+  }
+}
+
+.access {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+
+  border-radius: 15px;
+  background: #f9fafb;
+  box-shadow: -30px 30px 50px 0px rgba(28, 28, 30, 0.1);
+}
