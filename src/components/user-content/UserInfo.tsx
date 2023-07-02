@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from "react";
-import { OptionIcon } from "../../assets/home/OptionIcon";
+import { useState } from "react";
 import { UserAccessChange } from "./UserAccessChange";
 import { UserAdvance } from "./UserAdvance";
 
+import "../../assets/styles/semantic-ui-reset.scss";
 import "./UserInfo.scss";
 type Props = {};
 
@@ -44,8 +44,7 @@ const UserInfo = (props: Props) => {
       <button className="user-info__option-btn" onClick={showContent}>
         <UserAdvance changeAccess={changeAcess} text="..."></UserAdvance>
       </button>
-      {/* {isContent && <UserAdvance changeAccess={changeAcess} />} */}
-      {/* {isAdvance && <UserAccessChange />} */}
+      {isAdvance && <UserAccessChange closeAdvance={closeAdvance} />}
     </article>
   );
 };

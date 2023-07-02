@@ -8,17 +8,14 @@ type Props = {
 const UserAdvance = ({ changeAccess, text }: Props) => {
   return (
     <Dropdown icon={false} text={text}>
-      <Dropdown.Menu className="advance">
-        <Dropdown.Item
-          className="advance__item"
-          text="Изменить права доступа"
-          onClick={changeAccess}
-        />
-        <Dropdown.Item
-          className="advance__item"
-          text="Отправить код повторно"
-        />
-        <Dropdown.Item className="advance__item" text="Удалить" />
+      <Dropdown.Menu className="menu-reset">
+        <ul className="user-dropdown">
+          <li className="user-dropdown__advance" onClick={changeAccess}>
+            Изменить права доступа
+          </li>
+          <li className="user-dropdown__advance">Отправить код повторно</li>
+          <li className="user-dropdown__advance">Удалить</li>
+        </ul>
       </Dropdown.Menu>
     </Dropdown>
   );

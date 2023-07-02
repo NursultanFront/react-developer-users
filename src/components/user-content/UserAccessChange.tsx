@@ -1,22 +1,49 @@
+import { Fragment, useEffect } from "react";
 import { options } from "../../data/data";
 import { Dropdown } from "semantic-ui-react";
 
 type Props = {
-  text: string;
+  closeAdvance: () => void;
 };
 
-const UserAccessChange = ({ text }: Props) => {
+const UserAccessChange = ({ closeAdvance }: Props) => {
+  useEffect(() => {
+    window.addEventListener("click", () => {
+      closeAdvance();
+    });
+
+    return () => {
+      window.removeEventListener("click", () => {
+        closeAdvance();
+      });
+    };
+  }, [closeAdvance]);
+
   return (
-    <form className="access">
-      {options.map((item) => {
-        return (
-          <label htmlFor={item.value} key={item.value}>
-            <input type="checkbox" name="" id={item.value} />
-            <span>{item.label}</span>
-          </label>
-        );
-      })}
-    </form>
+    <>
+      <Dropdown icon={false}>
+        <Dropdown.Menu open className="menu-reset">
+          <form className="user-dropdown">
+            {options.map((item) => {
+              return (
+                <label
+                  key={item.label}
+                  htmlFor={item.value}
+                  className="user-dropdown__access"
+                >
+                  <input
+                    type="checkbox"
+                    id={item.value}
+                    onChange={() => console.log("lolka")}
+                  />
+                  <span>{item.label}</span>
+                </label>
+              );
+            })}
+          </form>
+        </Dropdown.Menu>
+      </Dropdown>
+    </>
   );
 };
 
