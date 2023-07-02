@@ -5,8 +5,10 @@
       "name": "Артем Иванов",
       "email": "artem@gmail.com",
       "permissions": [
+        "Все",
         "Модерация объявлений",
         "Блог",
+        "Тех. поддержка",
         "Аналитика",
         "Акции"
       ],
@@ -17,7 +19,7 @@
       "name": "Лена Новикова",
       "email": "lenkan@gmail.com",
       "permissions": [
-        "Администратор"
+        "Все"
       ],
       "image": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&w=1000&q=80"
     },

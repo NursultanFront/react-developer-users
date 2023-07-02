@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { User } from "../../../api/user/types";
 import { api } from "../../../api";
 
@@ -34,6 +34,7 @@ const userSlice = createSlice({
       .addCase(fetchUsers.pending, (state) => {
         state.loading = true;
         state.error = null;
+        state.users = [];
       })
       .addCase(fetchUsers.fulfilled, (state, action) => {
         state.loading = false;
@@ -42,6 +43,7 @@ const userSlice = createSlice({
       .addCase(fetchUsers.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message || "Failed to fetch users.";
+        state.users = [];
       });
   },
 });
