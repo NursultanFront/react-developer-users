@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { memo, useState } from "react";
 import { UserAccessChange } from "./UserAccessChange";
 import { UserAdvance } from "./UserAdvance";
 
@@ -7,7 +7,7 @@ import "./UserInfo.scss";
 import { AdmitPopup } from "../modals/admitPopup/AdmitPopup";
 type Props = {};
 
-const UserInfo = (props: Props) => {
+const UserInfo = memo((props: Props) => {
   const [isContent, setIsContent] = useState(false);
   const [isAdvance, showAdvance] = useState(false);
   const [admitPopup, setAdmitPopup] = useState(false);
@@ -60,6 +60,6 @@ const UserInfo = (props: Props) => {
       )}
     </article>
   );
-};
+});
 
 export { UserInfo };

@@ -6,9 +6,23 @@ type Props = {
   showAdmitPopup: () => void;
 };
 
-const UserAdvance = ({ changeAccess, text, showAdmitPopup }: Props) => {
+const optionIcon = (
+  <svg
+    width="20"
+    height="4"
+    viewBox="0 0 20 4"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <circle cx="2" cy="2" r="2" fill="#C1C1CB" />
+    <circle cx="10" cy="2" r="2" fill="#C1C1CB" />
+    <circle cx="18" cy="2" r="2" fill="#C1C1CB" />
+  </svg>
+);
+
+const UserAdvance = ({ changeAccess, showAdmitPopup }: Props) => {
   return (
-    <Dropdown icon={false} text={text} direction="left">
+    <Dropdown icon={optionIcon} direction="left">
       <Dropdown.Menu className="menu-reset">
         <ul className="user-dropdown">
           <li className="user-dropdown__advance" onClick={changeAccess}>
