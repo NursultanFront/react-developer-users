@@ -22,7 +22,7 @@ const UserAccessChange = ({ closeAdvance }: Props) => {
   return (
     <>
       <Dropdown icon={false}>
-        <Dropdown.Menu open className="menu-reset">
+        <Dropdown.Menu open className="menu-reset access-menu">
           <form className="user-dropdown">
             {options.map((item) => {
               return (
