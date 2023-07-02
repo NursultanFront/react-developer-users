@@ -6,12 +6,14 @@ type State = {
   users: User[];
   loading: boolean;
   error: string | null;
+  asideMenu: boolean;
 };
 
 const initialState: State = {
   users: [],
   loading: false,
   error: null,
+  asideMenu: false,
 };
 
 export const fetchUsers = createAsyncThunk("user/fetchUsers", async () => {
@@ -22,7 +24,11 @@ export const fetchUsers = createAsyncThunk("user/fetchUsers", async () => {
 const userSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {},
+  reducers: {
+    toggleAsideMenu: (state) => {
+      state.asideMenu = !state.asideMenu;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchUsers.pending, (state) => {
@@ -40,4 +46,5 @@ const userSlice = createSlice({
   },
 });
 
+export const { toggleAsideMenu } = userSlice.actions;
 export default userSlice.reducer;
