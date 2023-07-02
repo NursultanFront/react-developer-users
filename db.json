@@ -6,10 +6,7 @@
       "email": "artem@gmail.com",
       "permissions": [
         "Все",
-        "Модерация объявлений",
         "Блог",
-        "Тех. поддержка",
-        "Обращение клиентов",
         "Аналитика",
         "Акции"
       ],
@@ -21,7 +18,12 @@
       "email": "lenkan@gmail.com",
       "permissions": [
         "Все",
-        "Модерация объявлений"
+        "Модерация объявлений",
+        "Блог",
+        "Тех. поддержка",
+        "Обращение клиентов",
+        "Аналитика",
+        "Акции"
       ],
       "image": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&w=1000&q=80"
     },
@@ -30,9 +32,8 @@
       "name": "Максим Иванов",
       "email": "maksiim@gmail.com",
       "permissions": [
-        "Акции",
-        "Модерация объявлений",
-        "Тех. поддержка"
+        "Тех. поддержка",
+        "Акции"
       ],
       "image": "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?cs=srgb&dl=pexels-simon-robben-614810.jpg&fm=jpg"
     },
@@ -49,15 +50,23 @@
       "email": "dasdaw@gmail.com",
       "permissions": [
         "Модерация объявлений",
-        "Блог"
+        "Блог",
+        "Тех. поддержка",
+        "Обращение клиентов",
+        "Аналитика",
+        "Акции"
       ],
       "id": 5
     },
     {
       "email": "sdaaw@gmail.com",
       "permissions": [
+        "Модерация объявлений",
         "Блог",
-        "Тех. поддержка"
+        "Тех. поддержка",
+        "Обращение клиентов",
+        "Аналитика",
+        "Акции"
       ],
       "id": 6
     }

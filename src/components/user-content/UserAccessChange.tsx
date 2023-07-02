@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { options } from "../../data/data";
+import { Options, options } from "../../data/data";
 import { Dropdown } from "semantic-ui-react";
 import { api } from "../../api";
 import { useAppDispatch } from "../../hooks/redux-hook";
@@ -36,23 +36,37 @@ const UserAccessChange = ({ closeAdvance, permissions, userId }: Props) => {
     } catch (error) {}
   };
 
-  const handleChange = (value: string) => {
-    const updatedOptionsCopy = [...optionList];
-    const optionIndex = updatedOptionsCopy.findIndex(
-      (option) => option.value === value
+  const allCheck = (check: boolean, arr: Options[]) => {
+    if (check) {
+      changePermissionList([]);
+      return;
+    }
+
+    const allSelected = arr.map((item) => item.label);
+    changePermissionList(allSelected);
+  };
+
+  const handleChange = (value: Options) => {
+    const updatedOptions = [...optionList];
+    const optionIndex = updatedOptions.findIndex(
+      (option) => option.value === value.value
     );
 
     if (optionIndex !== -1) {
       const updatedOption = {
-        ...updatedOptionsCopy[optionIndex],
-        checked: !updatedOptionsCopy[optionIndex].checked,
+        ...updatedOptions[optionIndex],
+        checked: !updatedOptions[optionIndex].checked,
       };
 
-      updatedOptionsCopy[optionIndex] = updatedOption;
-      setOptionList(updatedOptionsCopy);
+      updatedOptions[optionIndex] = updatedOption;
+      setOptionList(updatedOptions);
     }
 
-    const selectedPermissions = updatedOptionsCopy
+    if (value.value === "all") {
+      allCheck(value.checked, updatedOptions);
+      return;
+    }
+    const selectedPermissions = updatedOptions
       .filter((option) => option.checked)
       .map((option) => option.label);
 
@@ -87,7 +101,7 @@ const UserAccessChange = ({ closeAdvance, permissions, userId }: Props) => {
                     type="checkbox"
                     id={item.value}
                     checked={item.checked}
-                    onChange={() => handleChange(item.value)}
+                    onChange={() => handleChange(item)}
                   />
                   <span>{item.label}</span>
                 </label>
