@@ -29,7 +29,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "start:server": "react-scripts start json-server -w db.json --port 4000",
+    "dev": "react-scripts start json-server -w db.json --port 4000",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",

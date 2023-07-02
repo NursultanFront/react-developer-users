@@ -2,13 +2,18 @@ import { memo, useState } from "react";
 import { UserAccessChange } from "./UserAccessChange";
 import { UserAdvance } from "./UserAdvance";
 
+import DefaultUserImage from "../../assets/defaultUser.png";
+import { AdmitPopup } from "../modals/admitPopup/AdmitPopup";
+import { User } from "../../api/user/types";
+
 import "../../assets/styles/semantic-ui-reset.scss";
 import "./UserInfo.scss";
-import { AdmitPopup } from "../modals/admitPopup/AdmitPopup";
-type Props = {};
+type Props = {
+  user: User;
+};
 
-const UserInfo = memo((props: Props) => {
-  const [isContent, setIsContent] = useState(false);
+const UserInfo = memo(({ user }: Props) => {
+  const [, setIsContent] = useState(false);
   const [isAdvance, showAdvance] = useState(false);
   const [admitPopup, setAdmitPopup] = useState(false);
 
@@ -36,22 +41,27 @@ const UserInfo = memo((props: Props) => {
 
   return (
     <article className="user-info">
-      <img src="" alt="user img" className="user-info__img" />
+      <img
+        src={user.image ?? DefaultUserImage}
+        alt="user img"
+        className="user-info__img"
+      />
       <div className="user-info__person">
         <div className="user-info__box ">
-          <h2>Артем Иванов</h2>
-          <h3>Не зарегистрирован</h3>
-          <span>Почта</span>
+          <h2>{user.name}</h2>
+          <h3>{"Не зарегистрирован"}</h3>
+          <span>{user.email}</span>
         </div>
         <ul className="user-info__roles">
-          <li>Администратор</li>
+          {user.permissions.map((item, i) => {
+            return <li key={i}>{item}</li>;
+          })}
         </ul>
       </div>
       <button className="user-info__option-btn" onClick={showContent}>
         <UserAdvance
           showAdmitPopup={showAdmitPopup}
           changeAccess={changeAcess}
-          text="..."
         ></UserAdvance>
       </button>
       {isAdvance && <UserAccessChange closeAdvance={closeAdvance} />}

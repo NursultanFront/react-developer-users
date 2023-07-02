@@ -1,12 +1,17 @@
 import { UserInfo } from "../../components/user-content/UserInfo";
 import { LoupeIcon } from "../../assets/home/LoupeIcon";
-
-import "./HomeView.scss";
-import { useCallback, useState } from "react";
+import { useEffect, useState } from "react";
 import { NewUserModal } from "../../components/modals/newUserModal/NewUserModal";
 import { AdmitPopup } from "../../components/modals/admitPopup/AdmitPopup";
+import { api } from "../../api";
+import { User } from "../../api/user/types";
+
+import "./HomeView.scss";
+import TheHeader from "../../components/header/TheHeader";
 
 const HomeView = () => {
+  const [users, setUsers] = useState<User[]>([]);
+
   const [showInvintation, setShowInvintation] = useState(false);
   const [showAdmit, setShowAdmit] = useState(false);
 
@@ -27,26 +32,36 @@ const HomeView = () => {
     setShowAdmit(value);
   };
 
+  // useEffect(() => {
+  //   const getUsers = async () => {
+  //     try {
+  //       const res = await api.user.getUsers();
+  //       setUsers(res);
+  //     } catch (error) {}
+  //   };
+
+  //   getUsers();
+  // }, []);
+
+  useEffect(() => {
+    const getUsers = async () => {
+      try {
+        const res = await api.user.getUsers();
+        setUsers(res);
+      } catch (error) {}
+    };
+
+    getUsers();
+  }, [showAdmit]);
+
   return (
     <div className="home">
       <div className="home__wrapper">
-        <div className="home__header">
-          <h2 className="home__title">Команда</h2>
-          <div className="home__input">
-            <label className="home__label">
-              <input type="text" placeholder="Поиск по Email" />
-              <button className="home__loupe">
-                <LoupeIcon />
-              </button>
-            </label>
-            <button className="home__add-btn" onClick={showModalInvint}>
-              Добавить пользователя
-            </button>
-          </div>
-        </div>
         <div className="home__content">
-          <UserInfo></UserInfo>
-          <UserInfo></UserInfo>
+          <TheHeader showModalInvint={showModalInvint} />
+          {users.map((item) => {
+            return <UserInfo key={item.id} user={item} />;
+          })}
         </div>
       </div>
 

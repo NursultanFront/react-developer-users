@@ -1,7 +1,6 @@
 import { Dropdown } from "semantic-ui-react";
 
 type Props = {
-  text: string;
   changeAccess: () => void;
   showAdmitPopup: () => void;
 };

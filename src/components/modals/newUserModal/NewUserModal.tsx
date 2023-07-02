@@ -4,6 +4,8 @@ import { Options } from "../../../data/data";
 import { CloseIcons } from "../../../assets/modals/CloseIcons";
 import { useCallback, useState } from "react";
 import isEmail from "validator/es/lib/isEmail";
+import { NewUser } from "../../../api/user/types";
+import { api } from "../../../api";
 
 type Props = {
   modalOpen: boolean;
@@ -12,29 +14,43 @@ type Props = {
 };
 
 const NewUserModal = ({ modalOpen, closeModal, getValue }: Props) => {
-  const [inputValue, setInputValue] = useState("");
   const [isEmailValid, setIsEmailValid] = useState(false);
+  const [user, setUser] = useState<NewUser>({
+    email: "",
+    permissions: [],
+  });
 
   const getSelectValue = (value: Options["label"][] | Options["label"]) => {
-    console.log(value);
-  };
+    const permissionsArray = Array.isArray(value) ? value : [value];
 
-  const onSubmit = useCallback(
-    (event: React.FormEvent<HTMLFormElement>) => {
-      event.preventDefault();
-      console.log(inputValue);
-      getValue(true);
-    },
-    [getValue, inputValue]
-  );
+    setUser((prevUser) => ({
+      ...prevUser,
+      permissions: [...permissionsArray],
+    }));
+  };
 
   const getTextInputValue = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       const newEmail = event.target.value;
-      setInputValue(newEmail);
+      setUser((prevUser) => ({
+        ...prevUser,
+        email: newEmail,
+      }));
       setIsEmailValid(isEmail(newEmail));
     },
     []
+  );
+
+  const onSubmit = useCallback(
+    async (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+
+      try {
+        await api.user.addUser(user);
+        getValue(true);
+      } catch (error) {}
+    },
+    [getValue, user]
   );
 
   return (
@@ -49,7 +65,7 @@ const NewUserModal = ({ modalOpen, closeModal, getValue }: Props) => {
             <input
               type="email"
               placeholder="Email"
-              value={inputValue}
+              value={user.email}
               onChange={getTextInputValue}
             />
             <SelectComp multi={true} getValue={getSelectValue}></SelectComp>
