@@ -6,6 +6,8 @@ import { useCallback, useState } from "react";
 import isEmail from "validator/es/lib/isEmail";
 import { NewUser } from "../../../api/user/types";
 import { api } from "../../../api";
+import { useAppDispatch } from "../../../hooks/redux-hook";
+import { fetchUsers } from "../../../store/slice/user/userSlice";
 
 type Props = {
   modalOpen: boolean;
@@ -20,38 +22,38 @@ const NewUserModal = ({ modalOpen, closeModal, getValue }: Props) => {
     permissions: [],
   });
 
-  const getSelectValue = (value: Options["label"][] | Options["label"]) => {
-    const permissionsArray = Array.isArray(value) ? value : [value];
+  const dispatch = useAppDispatch();
 
-    setUser((prevUser) => ({
-      ...prevUser,
-      permissions: [...permissionsArray],
-    }));
-  };
+  const getSelectValue = useCallback(
+    (value: Options["label"][] | Options["label"]) => {
+      const permissionsArray = Array.isArray(value) ? value : [value];
 
-  const getTextInputValue = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      const newEmail = event.target.value;
       setUser((prevUser) => ({
         ...prevUser,
-        email: newEmail,
+        permissions: [...permissionsArray],
       }));
-      setIsEmailValid(isEmail(newEmail));
     },
     []
   );
 
-  const onSubmit = useCallback(
-    async (event: React.FormEvent<HTMLFormElement>) => {
-      event.preventDefault();
+  const getTextInputValue = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newEmail = event.target.value;
+    setUser((prevUser) => ({
+      ...prevUser,
+      email: newEmail,
+    }));
+    setIsEmailValid(isEmail(newEmail));
+  };
 
-      try {
-        await api.user.addUser(user);
-        getValue(true);
-      } catch (error) {}
-    },
-    [getValue, user]
-  );
+  const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    try {
+      await api.user.addUser(user);
+      getValue(true);
+      dispatch(fetchUsers());
+    } catch (error) {}
+  };
 
   return (
     <Popup isOpen={modalOpen}>

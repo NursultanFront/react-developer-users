@@ -1,5 +1,7 @@
 import { Dropdown } from "semantic-ui-react";
 import { api } from "../../api";
+import { useAppDispatch } from "../../hooks/redux-hook";
+import { fetchUsers } from "../../store/slice/user/userSlice";
 
 type Props = {
   changeAccess: () => void;
@@ -22,9 +24,12 @@ const optionIcon = (
 );
 
 const UserAdvance = ({ changeAccess, showAdmitPopup, userId }: Props) => {
+  const dispatch = useAppDispatch();
+
   const deleteUser = async () => {
     try {
       await api.user.deleteUser(userId);
+      dispatch(fetchUsers());
     } catch (error) {
       console.log(error);
     }

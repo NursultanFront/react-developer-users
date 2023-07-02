@@ -2,14 +2,16 @@ import { UserInfo } from "../../components/user-content/UserInfo";
 import { useEffect, useState } from "react";
 import { NewUserModal } from "../../components/modals/newUserModal/NewUserModal";
 import { AdmitPopup } from "../../components/modals/admitPopup/AdmitPopup";
-import { api } from "../../api";
-import { User } from "../../api/user/types";
 
 import TheHeader from "../../components/header/TheHeader";
 import "./HomeView.scss";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux-hook";
+import { fetchUsers } from "../../store/slice/user/userSlice";
 
 const HomeView = () => {
-  const [users, setUsers] = useState<User[]>([]);
+  const { error, loading, users } = useAppSelector((store) => store.users);
+
+  const dispatch = useAppDispatch();
 
   const [showInvintation, setShowInvintation] = useState(false);
   const [showAdmit, setShowAdmit] = useState(false);
@@ -32,15 +34,8 @@ const HomeView = () => {
   };
 
   useEffect(() => {
-    const getUsers = async () => {
-      try {
-        const res = await api.user.getUsers();
-        setUsers(res);
-      } catch (error) {}
-    };
-
-    getUsers();
-  }, [showAdmit]);
+    dispatch(fetchUsers());
+  }, [dispatch]);
 
   return (
     <div className="home">
@@ -50,6 +45,9 @@ const HomeView = () => {
           {users.map((item) => {
             return <UserInfo key={item.id} user={item} />;
           })}
+
+          {loading && <p>Loading.....</p>}
+          {error && <p>{error}</p>}
         </div>
       </div>
 

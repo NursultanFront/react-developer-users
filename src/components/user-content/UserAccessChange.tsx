@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { options } from "../../data/data";
 import { Dropdown } from "semantic-ui-react";
 import { api } from "../../api";
+import { useAppDispatch } from "../../hooks/redux-hook";
+import { fetchUsers } from "../../store/slice/user/userSlice";
 
 type Props = {
   closeAdvance: () => void;
@@ -10,6 +12,8 @@ type Props = {
 };
 
 const UserAccessChange = ({ closeAdvance, permissions, userId }: Props) => {
+  const dispatch = useAppDispatch();
+
   const [optionList, setOptionList] = useState(
     options.map((item) => {
       if (permissions.includes(item.label)) {
@@ -28,6 +32,7 @@ const UserAccessChange = ({ closeAdvance, permissions, userId }: Props) => {
         id: userId,
         permissions: value,
       });
+      dispatch(fetchUsers());
     } catch (error) {}
   };
 

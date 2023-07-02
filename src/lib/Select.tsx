@@ -10,9 +10,9 @@ type Props = {
 const accessList = options.filter((item) => !item.default);
 
 const SelectComp = ({ multi, getValue }: Props) => {
-  const [access, setAccess] = useState<
-    Options["label"] | MultiValue<Options> | null
-  >(null);
+  const [, setAccess] = useState<Options["label"] | MultiValue<Options> | null>(
+    null
+  );
 
   const onChange = (
     option: SingleValue<Options> | MultiValue<Options>,
