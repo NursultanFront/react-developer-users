@@ -32,17 +32,6 @@ const HomeView = () => {
     setShowAdmit(value);
   };
 
-  // useEffect(() => {
-  //   const getUsers = async () => {
-  //     try {
-  //       const res = await api.user.getUsers();
-  //       setUsers(res);
-  //     } catch (error) {}
-  //   };
-
-  //   getUsers();
-  // }, []);
-
   useEffect(() => {
     const getUsers = async () => {
       try {
