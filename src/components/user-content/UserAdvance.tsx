@@ -7,6 +7,7 @@ type Props = {
   changeAccess: () => void;
   showAdmitPopup: () => void;
   userId: number;
+  isActivate: boolean;
 };
 
 const optionIcon = (
@@ -23,9 +24,13 @@ const optionIcon = (
   </svg>
 );
 
-const UserAdvance = ({ changeAccess, showAdmitPopup, userId }: Props) => {
+const UserAdvance = ({
+  changeAccess,
+  showAdmitPopup,
+  userId,
+  isActivate,
+}: Props) => {
   const dispatch = useAppDispatch();
-
   const deleteUser = async () => {
     try {
       await api.user.deleteUser(userId);
@@ -38,17 +43,28 @@ const UserAdvance = ({ changeAccess, showAdmitPopup, userId }: Props) => {
   return (
     <Dropdown icon={optionIcon} direction="left">
       <Dropdown.Menu className="menu-reset">
-        <ul className="user-dropdown">
-          <li className="user-dropdown__advance" onClick={changeAccess}>
-            Изменить права доступа
-          </li>
-          <li className="user-dropdown__advance" onClick={showAdmitPopup}>
-            Отправить код повторно
-          </li>
-          <li className="user-dropdown__advance" onClick={deleteUser}>
-            Удалить
-          </li>
-        </ul>
+        <div className="user-dropdown">
+          <input
+            type="button"
+            value="Изменить права доступа"
+            className="user-dropdown__advance"
+            onClick={changeAccess}
+          />
+
+          <input
+            type="button"
+            value="Отправить код повторно"
+            className="user-dropdown__advance"
+            disabled={isActivate}
+            onClick={showAdmitPopup}
+          />
+          <input
+            type="button"
+            value="Удалить"
+            className="user-dropdown__advance"
+            onClick={deleteUser}
+          />
+        </div>
       </Dropdown.Menu>
     </Dropdown>
   );

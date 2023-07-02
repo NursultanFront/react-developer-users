@@ -4,7 +4,7 @@ export type User = {
   email: string;
   permissions: string[];
   image: string;
-  isActivated?: boolean;
+  isActivate: boolean;
 };
 
-export type NewUser = Pick<User, "email" | "permissions">;
+export type NewUser = Pick<User, "email" | "permissions" | "isActivate">;

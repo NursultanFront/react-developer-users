@@ -11,11 +11,12 @@ import DownLoadIcon from "../../assets/home/DownLoadIcon";
 
 const HomeView = () => {
   const { error, loading, users } = useAppSelector((store) => store.users);
-
-  const dispatch = useAppDispatch();
+  const [email, setEmail] = useState("");
 
   const [showInvintation, setShowInvintation] = useState(false);
   const [showAdmit, setShowAdmit] = useState(false);
+
+  const dispatch = useAppDispatch();
 
   const showModalInvint = () => {
     setShowInvintation(true);
@@ -29,9 +30,10 @@ const HomeView = () => {
     setShowAdmit(false);
   };
 
-  const stateAdmitBtn = (value: boolean) => {
+  const stateAdmitBtn = (value: boolean, email: string) => {
     closeInvintation();
     setShowAdmit(value);
+    setEmail(email);
   };
 
   useEffect(() => {
@@ -64,7 +66,11 @@ const HomeView = () => {
         />
       )}
       {showAdmit && (
-        <AdmitPopup modalOpen={showAdmit} closeModal={closeAdmit} />
+        <AdmitPopup
+          emailText={email}
+          modalOpen={showAdmit}
+          closeModal={closeAdmit}
+        />
       )}
     </div>
   );

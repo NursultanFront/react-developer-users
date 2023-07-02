@@ -86,8 +86,18 @@
   &__advance {
     color: #424f5e;
     font-size: 18px;
+    text-align: initial;
+    background: none;
+    border: none;
+    cursor: pointer;
+
     &:hover {
       color: #9494a0;
+    }
+
+    &:disabled {
+      opacity: 0.7;
+      cursor: auto;
     }
   }
 

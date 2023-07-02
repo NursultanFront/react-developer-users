@@ -16,6 +16,10 @@ export class UserRest extends BasicRest {
     return this.postRequest("/users", user);
   }
 
+  public activateEmail(id: number) {
+    return this.patchRequest(`/users/${id}`, { isActivate: true });
+  }
+
   public deleteUser(id: number) {
     return this.deleteRequest(`/users/${id}`);
   }

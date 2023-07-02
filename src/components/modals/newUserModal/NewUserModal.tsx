@@ -12,7 +12,7 @@ import { fetchUsers } from "../../../store/slice/user/userSlice";
 type Props = {
   modalOpen: boolean;
   closeModal: () => void;
-  getValue: (value: boolean) => void;
+  getValue: (value: boolean, email: string) => void;
 };
 
 const NewUserModal = ({ modalOpen, closeModal, getValue }: Props) => {
@@ -20,6 +20,7 @@ const NewUserModal = ({ modalOpen, closeModal, getValue }: Props) => {
   const [user, setUser] = useState<NewUser>({
     email: "",
     permissions: [],
+    isActivate: false,
   });
 
   const dispatch = useAppDispatch();
@@ -50,7 +51,7 @@ const NewUserModal = ({ modalOpen, closeModal, getValue }: Props) => {
 
     try {
       await api.user.addUser(user);
-      getValue(true);
+      getValue(true, user.email);
       dispatch(fetchUsers());
     } catch (error) {}
   };

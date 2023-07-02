@@ -1,4 +1,4 @@
-import { memo, useState } from "react";
+import { useState } from "react";
 import { UserAccessChange } from "./UserAccessChange";
 import { UserAdvance } from "./UserAdvance";
 
@@ -8,6 +8,8 @@ import { User } from "../../api/user/types";
 
 import "../../assets/styles/semantic-ui-reset.scss";
 import "./UserInfo.scss";
+import { api } from "../../api";
+
 type Props = {
   user: User;
 };
@@ -16,6 +18,12 @@ const UserInfo = ({ user }: Props) => {
   const [, setIsContent] = useState(false);
   const [isAdvance, showAdvance] = useState(false);
   const [admitPopup, setAdmitPopup] = useState(false);
+
+  const activateEmail = async () => {
+    try {
+      await api.user.activateEmail(user.id);
+    } catch (error) {}
+  };
 
   const showContent = () => {
     setIsContent(true);
@@ -33,6 +41,7 @@ const UserInfo = ({ user }: Props) => {
 
   const showAdmitPopup = () => {
     setAdmitPopup(true);
+    activateEmail();
   };
 
   const closeAdmitPopup = () => {
@@ -49,7 +58,7 @@ const UserInfo = ({ user }: Props) => {
       <div className="user-info__person">
         <div className="user-info__box ">
           <h2>{user.name}</h2>
-          <h3>{"Не зарегистрирован"}</h3>
+          <h3>{!user.isActivate && "Не зарегистрирован"}</h3>
           <span>{user.email}</span>
         </div>
         <ul className="user-info__roles">
@@ -60,6 +69,7 @@ const UserInfo = ({ user }: Props) => {
       </div>
       <button className="user-info__option-btn" onClick={showContent}>
         <UserAdvance
+          isActivate={user.isActivate}
           userId={user.id}
           showAdmitPopup={showAdmitPopup}
           changeAccess={changeAcess}
@@ -73,7 +83,11 @@ const UserInfo = ({ user }: Props) => {
         />
       )}
       {admitPopup && (
-        <AdmitPopup modalOpen={admitPopup} closeModal={closeAdmitPopup} />
+        <AdmitPopup
+          emailText={user.email}
+          modalOpen={admitPopup}
+          closeModal={closeAdmitPopup}
+        />
       )}
     </article>
   );
