@@ -1,13 +1,12 @@
 import { UserInfo } from "../../components/user-content/UserInfo";
-import { LoupeIcon } from "../../assets/home/LoupeIcon";
 import { useEffect, useState } from "react";
 import { NewUserModal } from "../../components/modals/newUserModal/NewUserModal";
 import { AdmitPopup } from "../../components/modals/admitPopup/AdmitPopup";
 import { api } from "../../api";
 import { User } from "../../api/user/types";
 
-import "./HomeView.scss";
 import TheHeader from "../../components/header/TheHeader";
+import "./HomeView.scss";
 
 const HomeView = () => {
   const [users, setUsers] = useState<User[]>([]);

@@ -1,4 +1,4 @@
-import type { AxiosInstance, AxiosResponse } from 'axios';
+import type { AxiosInstance, AxiosResponse } from "axios";
 
 interface AnyObj {
   [key: string]: unknown;
@@ -6,7 +6,7 @@ interface AnyObj {
 
 export abstract class BasicRest {
   protected updateAuthHeader(params: { token: string }) {
-    this.endpoint.defaults.headers.common['Authorization'] = params.token;
+    this.endpoint.defaults.headers.common["Authorization"] = params.token;
   }
 
   protected patchRequest<T = AnyObj>(url: string, params?: object) {

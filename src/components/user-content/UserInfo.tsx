@@ -12,7 +12,7 @@ type Props = {
   user: User;
 };
 
-const UserInfo = memo(({ user }: Props) => {
+const UserInfo = ({ user }: Props) => {
   const [, setIsContent] = useState(false);
   const [isAdvance, showAdvance] = useState(false);
   const [admitPopup, setAdmitPopup] = useState(false);
@@ -60,6 +60,7 @@ const UserInfo = memo(({ user }: Props) => {
       </div>
       <button className="user-info__option-btn" onClick={showContent}>
         <UserAdvance
+          userId={user.id}
           showAdmitPopup={showAdmitPopup}
           changeAccess={changeAcess}
         ></UserAdvance>
@@ -70,6 +71,6 @@ const UserInfo = memo(({ user }: Props) => {
       )}
     </article>
   );
-});
+};
 
 export { UserInfo };

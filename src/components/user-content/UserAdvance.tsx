@@ -1,8 +1,10 @@
 import { Dropdown } from "semantic-ui-react";
+import { api } from "../../api";
 
 type Props = {
   changeAccess: () => void;
   showAdmitPopup: () => void;
+  userId: number;
 };
 
 const optionIcon = (
@@ -19,7 +21,15 @@ const optionIcon = (
   </svg>
 );
 
-const UserAdvance = ({ changeAccess, showAdmitPopup }: Props) => {
+const UserAdvance = ({ changeAccess, showAdmitPopup, userId }: Props) => {
+  const deleteUser = async () => {
+    try {
+      await api.user.deleteUser(userId);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <Dropdown icon={optionIcon} direction="left">
       <Dropdown.Menu className="menu-reset">
@@ -30,7 +40,9 @@ const UserAdvance = ({ changeAccess, showAdmitPopup }: Props) => {
           <li className="user-dropdown__advance" onClick={showAdmitPopup}>
             Отправить код повторно
           </li>
-          <li className="user-dropdown__advance">Удалить</li>
+          <li className="user-dropdown__advance" onClick={deleteUser}>
+            Удалить
+          </li>
         </ul>
       </Dropdown.Menu>
     </Dropdown>

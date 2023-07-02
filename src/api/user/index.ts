@@ -1,5 +1,5 @@
 import { NewUser } from "./types/index";
-import { AxiosInstance } from "axios";
+import axios, { AxiosInstance } from "axios";
 import { BasicRest } from "../basic-rest";
 import { User } from "./types";
 
@@ -14,5 +14,9 @@ export class UserRest extends BasicRest {
 
   public addUser(user: NewUser) {
     return this.postRequest("/users", user);
+  }
+
+  public deleteUser(id: number) {
+    return this.deleteRequest(`/users/${id}`);
   }
 }
