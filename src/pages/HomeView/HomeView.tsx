@@ -7,6 +7,7 @@ import TheHeader from "../../components/header/TheHeader";
 import "./HomeView.scss";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux-hook";
 import { fetchUsers } from "../../store/slice/user/userSlice";
+import DownLoadIcon from "../../assets/home/DownLoadIcon";
 
 const HomeView = () => {
   const { error, loading, users } = useAppSelector((store) => store.users);
@@ -46,7 +47,11 @@ const HomeView = () => {
             return <UserInfo key={item.id} user={item} />;
           })}
 
-          {loading && <p>Loading.....</p>}
+          {loading && (
+            <div className="download">
+              <DownLoadIcon />
+            </div>
+          )}
           {error && <p>{error}</p>}
         </div>
       </div>

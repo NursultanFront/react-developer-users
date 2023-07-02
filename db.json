@@ -9,6 +9,7 @@
         "Модерация объявлений",
         "Блог",
         "Тех. поддержка",
+        "Обращение клиентов",
         "Аналитика",
         "Акции"
       ],
@@ -19,7 +20,8 @@
       "name": "Лена Новикова",
       "email": "lenkan@gmail.com",
       "permissions": [
-        "Все"
+        "Все",
+        "Модерация объявлений"
       ],
       "image": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&w=1000&q=80"
     },
@@ -46,14 +48,16 @@
     {
       "email": "dasdaw@gmail.com",
       "permissions": [
-        "Модерация объявлений"
+        "Модерация объявлений",
+        "Блог"
       ],
       "id": 5
     },
     {
       "email": "sdaaw@gmail.com",
       "permissions": [
-        "Блог"
+        "Блог",
+        "Тех. поддержка"
       ],
       "id": 6
     }
