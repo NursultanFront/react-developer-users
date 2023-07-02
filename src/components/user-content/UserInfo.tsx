@@ -65,7 +65,13 @@ const UserInfo = ({ user }: Props) => {
           changeAccess={changeAcess}
         ></UserAdvance>
       </button>
-      {isAdvance && <UserAccessChange closeAdvance={closeAdvance} />}
+      {isAdvance && (
+        <UserAccessChange
+          userId={user.id}
+          permissions={user.permissions}
+          closeAdvance={closeAdvance}
+        />
+      )}
       {admitPopup && (
         <AdmitPopup modalOpen={admitPopup} closeModal={closeAdmitPopup} />
       )}

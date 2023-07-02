@@ -19,4 +19,14 @@ export class UserRest extends BasicRest {
   public deleteUser(id: number) {
     return this.deleteRequest(`/users/${id}`);
   }
+
+  public changePermission({
+    id,
+    permissions,
+  }: {
+    id: number;
+    permissions: string[];
+  }) {
+    return this.patchRequest(`/users/${id}`, { permissions });
+  }
 }
